@@ -1,15 +1,36 @@
 # Santiago Paravano
 
-Lawyer & information security analyst (Argentine public sector) | AI governance, cybersecurity & public law.
+```text
+                                           sparavano
+                                           ---------------------------------------------------
+                                           OS:        Windows 11 · Ubuntu 24.04 LTS     [EDIT]
+          #-+**%    @%%                    Uptime:    [XX] years                        [EDIT]
+          #=+**#**++=+++**#%%              Host:      Argentine public sector · infosec analyst
+          #-=======++++++++***#            Kernel:    Lawyer & Public Accountant (UBP) · MBA
+         %=-=====+++************#@         Shell:     AI governance · cybersecurity · public law
+        %--=+====++****#######****#        Locale:    es_AR · en_US
+        --======+++**##########****#
+       *:-----==+++***#########*****       Packages:  MSc Ethical AI Governance (UPSA, 2026)
+       +:::---=++***#############***@                 Cybersecurity Diploma, 200h (UBP)
+       +::-----:---=+*#######*++++**%      Upgrading: BSc in Information Security (Siglo 21)
+     #*=:---: ..:.. .:-=+*+=:.:--==*%                 Cybercrime Diploma (UNC)
+    %.:::---:.....-+-:.=*#*-:..---+*#+%    Processes: Lecturer, AI Ethics (BSc in AI)
+    %-- :--======++*++-=*#***+++++**#+*               Tutor, Data Privacy (Digital Law program)
+    %-:.----=+******+--=**##########**%    Building:  LLM red-teaming · evals · AI threat modeling
+     =-::----=++***+::::=******####***     Research:  MCCF — fiscal cyber-resilience capability
+     %+---:::-=+***=::..:===**+******#                model (sole author)
+        +:::::-===--===++=****+++***%
+        =:::-:-=+=:.:--=+++===-+**+*       Frameworks: NIST AI RMF · ISO/IEC 42001
+        =::::::=++=---===++****++++%                   ISO/IEC 27001:2022 · NIST CSF 2.0
+      *#+:....::-====+++++*****+++#
+     = +#+-.  ...::-=++*******+=*%         Hobbies.Air:    Drone piloting
+   %-   =**=:.  ....::-========#           Hobbies.Water:  Swimming (Oceanman 5K finisher)
+  *.     :+#*+=:....:::::::-==*            Hobbies.Ground: Trail running
+=:         =####*=-::::---=+++*@@
+   ...      :*%#%%%#*+=---=+*=##:=+#%      - Contact -----------------------------------------
+    ....      +%%%%%  @%*++**% %.....-=+   Substack:  santiagoparavano.substack.com
+     ......    -%%%@@    #+++#@ = ::....   LinkedIn:  in/santiago-paravano
 
-Focus: NIST AI RMF · ISO/IEC 42001 · ISO/IEC 27001:2022 · NIST CSF 2.0
-
-- University lecturer — AI Ethics (BSc in AI) and tutor, Data Privacy module (Digital Law program)
-
-- Researcher — sole author of the MCCF, a fiscal cyber-resilience capability model. Full paper forthcoming (CYBER.AR 2026)
-
-- Writing on AI security and governance: https://santiagoparavano.substack.com
-
-- LinkedIn: https://www.linkedin.com/in/santiago-paravano/
-
-Currently building the hands-on side of AI security: LLM red-teaming, evaluations, and threat modeling for AI systems.
+                                           - GitHub Stats ------------------------------------
+                                           Repos: 4 | Stars: [n] | Followers: [n]
+```
