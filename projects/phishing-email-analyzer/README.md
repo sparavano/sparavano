@@ -4,6 +4,8 @@ Una herramienta educativa en Python que lee un archivo de correo `.eml` y muestr
 
 **Estado:** versión 0.2, preparada con asistencia de IA. Incluye ejemplos ficticios, pruebas automatizadas, evaluación con casos sintéticos y una capa opcional de explicación por IA.
 
+Para ver el proyecto completo, abrí **`demo_portfolio.cmd`**: ejecuta cinco ejemplos ficticios, valida respuestas guardadas y genera un resumen de resultados y límites. La [guía del recorrido](docs/RECORRIDO_DEMO.md) incluye un guion de tres minutos para presentarlo. La demostración funciona sin API y sin una nueva inferencia de IA.
+
 ## Qué hace
 
 - Compara los dominios de `From` y `Reply-To`.

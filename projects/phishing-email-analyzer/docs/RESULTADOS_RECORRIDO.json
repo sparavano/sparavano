@@ -1,0 +1,121 @@
+{
+  "demo": "Recorrido reproducible del laboratorio educativo",
+  "all_samples_are_synthetic": true,
+  "application_called_provider_api": false,
+  "new_inference_during_demo": false,
+  "saved_response_provenance": "Las respuestas se generaron durante el desarrollo o intercambios manuales anteriores. Esta ejecución sólo importa los JSON. Consultar docs/PROVENIENCIA_IA.md, docs/PRUEBA_MANUAL_IA.md y docs/CASO_URGENCIA_BENIGNA.md.",
+  "cases": [
+    {
+      "id": "normal",
+      "title": "Correo normal de control",
+      "path": "examples/normal.eml",
+      "sha256": "656edeca2ac2b1065ccb2b3d69fbdba8f70e732482049e2441cdc093a6c62eac",
+      "expected_rules": [],
+      "observed_rules": [],
+      "finding_count": 0,
+      "matches_expected_rules": true,
+      "saved_ai_response": null
+    },
+    {
+      "id": "userinfo",
+      "title": "Enlace con información antes de @",
+      "path": "examples/revision_enlace.eml",
+      "sha256": "bc36eb65826e2a1c9424983202bd415b107a9dda4ca310dd9e6615feda48ca55",
+      "expected_rules": [
+        "userinfo_link"
+      ],
+      "observed_rules": [
+        "userinfo_link"
+      ],
+      "finding_count": 1,
+      "matches_expected_rules": true,
+      "saved_ai_response": {
+        "path": "examples/respuesta_manual.json",
+        "contract_validation": "accepted"
+      }
+    },
+    {
+      "id": "multiple",
+      "title": "Correo con varias señales preparadas",
+      "path": "examples/sospechoso.eml",
+      "sha256": "d3d03c24d419b7ab595a8db43977768452384674c615be3a5734785279591bff",
+      "expected_rules": [
+        "reply_to_domain",
+        "urgent_subject",
+        "link_label_mismatch",
+        "executable_attachment",
+        "http_link",
+        "ip_link",
+        "http_link"
+      ],
+      "observed_rules": [
+        "reply_to_domain",
+        "urgent_subject",
+        "link_label_mismatch",
+        "executable_attachment",
+        "http_link",
+        "ip_link",
+        "http_link"
+      ],
+      "finding_count": 7,
+      "matches_expected_rules": true,
+      "saved_ai_response": {
+        "path": "examples/ai_response_demo.json",
+        "contract_validation": "accepted"
+      }
+    },
+    {
+      "id": "benign_urgent",
+      "title": "Aviso benigno sintético con urgencia",
+      "path": "examples/aviso_legitimo_urgente.eml",
+      "sha256": "09198e7f1981d2902136e4b9159133932b09f2173d2348732d4285c65ab2c022",
+      "expected_rules": [
+        "urgent_subject"
+      ],
+      "observed_rules": [
+        "urgent_subject"
+      ],
+      "finding_count": 1,
+      "matches_expected_rules": true,
+      "saved_ai_response": {
+        "path": "examples/respuesta_urgencia.json",
+        "contract_validation": "accepted"
+      }
+    },
+    {
+      "id": "benign_control",
+      "title": "Mismo aviso sin la palabra de urgencia",
+      "path": "examples/aviso_legitimo_sin_urgencia.eml",
+      "sha256": "0f3b4be19e8ee1e1c9e410f03ec3898d22256604f3e0e5bd9673e60195236ff6",
+      "expected_rules": [],
+      "observed_rules": [],
+      "finding_count": 0,
+      "matches_expected_rules": true,
+      "saved_ai_response": null
+    }
+  ],
+  "checks": {
+    "five_cases_match_expected_rules": true,
+    "nonexistent_reference_rejected": true,
+    "urgency_comparison_checks_passed": true,
+    "synthetic_contract_cases_passed": true
+  },
+  "all_expected_checks_passed": true,
+  "contract_evaluation": {
+    "total": 27,
+    "passed": 27,
+    "failed": 0
+  },
+  "semantic_limit_control": {
+    "id": "unsupported_authentication_claim",
+    "description": "Una afirmación falsa sobre autenticación conserva IDs y formato válidos.",
+    "expected_observed_behavior": "accepted",
+    "observed": "accepted",
+    "known_semantic_falsehood_accepted": true,
+    "implementation_error": false,
+    "interpretation": "Demuestra que aceptar el contrato no acredita verdad semántica. Requiere revisión humana."
+  },
+  "semantic_truth_automatically_verified": false,
+  "human_review_required": true,
+  "scope": "Reproducción de fixtures y controles locales. No mide precisión de detección, tasa de falsos positivos ni calidad general de un modelo. Las señales no son veredictos; cero hallazgos no garantiza seguridad."
+}

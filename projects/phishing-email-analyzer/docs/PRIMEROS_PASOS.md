@@ -2,6 +2,8 @@
 
 El objetivo de esta primera etapa es que puedas ejecutar el proyecto, entender cada regla y explicar sus resultados. La ubicación pública del laboratorio es [sparavano/sparavano · projects/phishing-email-analyzer](https://github.com/sparavano/sparavano/tree/main/projects/phishing-email-analyzer).
 
+Para repetir los cinco casos y ver los controles en un solo recorrido, abrí **`demo_portfolio.cmd`**. Se genera un resumen en `reports\demo_portfolio\RESUMEN.md` y los datos en `resultados.json` dentro de esa misma carpeta. La [guía de demostración](RECORRIDO_DEMO.md) explica cómo mostrarlo en tres minutos. Este recorrido importa explicaciones guardadas; no genera una respuesta nueva ni usa una API.
+
 ## 1. Empezar con el asistente manual
 
 Hacé doble clic en **`modo_manual.cmd`**. El menú ofrece:
@@ -176,7 +178,7 @@ git pull
 Después de trabajar en el código o la documentación, prepará los archivos del laboratorio desde esa misma carpeta:
 
 ```powershell
-git add -- "*.py" demo.cmd modo_manual.cmd README.md .gitignore examples tests docs evals
+git add -- "*.py" demo.cmd modo_manual.cmd demo_portfolio.cmd README.md .gitignore examples tests docs evals
 git status --short
 git diff --cached --stat
 git diff --cached

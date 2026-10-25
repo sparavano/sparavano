@@ -38,6 +38,6 @@
 
 ## Proyectos
 
-- [Analizador de correos de phishing](projects/phishing-email-analyzer/README.md): laboratorio educativo en Python v0.2, con explicaciones opcionales de IA, datos minimizados, validación local de respuestas y evaluación sintética de sus límites. Incluye un asistente manual para Windows, 65 pruebas automatizadas y documentación de la integración opcional.
+- [Analizador de correos de phishing](projects/phishing-email-analyzer/README.md): laboratorio educativo en Python v0.2, con explicaciones opcionales de IA, datos minimizados, validación local de respuestas y evaluación sintética de sus límites. Incluye un asistente manual para Windows, 65 pruebas automatizadas y documentación de la integración opcional. [Ver el recorrido de demostración](projects/phishing-email-analyzer/docs/RECORRIDO_DEMO.md).
 
 *Reflexión personal, académica y de divulgación. No representa la posición de ningún organismo o institución en la que me desempeñe o haya desempeñado funciones (Ley 25.188).*

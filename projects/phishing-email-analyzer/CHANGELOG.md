@@ -6,6 +6,7 @@
 - Solicitudes minimizadas de IA construidas con un catálogo fijo, sin cuerpo, direcciones, enlaces ni evidencia textual del correo.
 - Intercambio manual de JSON y reproducción offline de una explicación guardada.
 - Asistente `modo_manual.cmd` para preparar el texto del chat, validar una respuesta y guardar informes locales, sin conexión a la API.
+- Recorrido `demo_portfolio.cmd` con cinco fixtures, respuestas de IA guardadas, controles locales y una guía breve para mostrar los resultados y sus límites.
 - Adaptador opcional para OpenAI Responses API, con modelo y clave configurados explícitamente.
 - Validación local de estructura, cobertura y referencias, con controles parciales sobre indicadores nuevos.
 - Evaluación sintética que separa cumplimiento del contrato de veracidad semántica.
