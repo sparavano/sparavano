@@ -28,6 +28,9 @@ echo EJEMPLO 1: correo normal ficticio
 echo.
 echo EJEMPLO 2: correo sospechoso ficticio
 "%LAB_PYTHON%" %LAB_PYTHON_ARGS% phishing_analyzer.py examples\sospechoso.eml
+echo.
+echo EJEMPLO 3: explicacion IA guardada - sin nueva inferencia ni red
+"%LAB_PYTHON%" %LAB_PYTHON_ARGS% phishing_analyzer.py examples\sospechoso.eml --ai-response examples\ai_response_demo.json
 
 :done
 popd

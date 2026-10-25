@@ -1,0 +1,56 @@
+Analizador de phishing v0.2.0
+Archivo: sospechoso.eml
+SHA-256: d3d03c24d419b7ab595a8db43977768452384674c615be3a5734785279591bff
+From: Soporte del laboratorio <soporte@universidad[.]example>
+Reply-To: revision@cuenta[.]test
+Asunto: URGENTE: revision de cuenta suspendida
+
+Señales encontradas: 7
+- [F001 / reply_to_domain] From y Reply-To tienen dominios distintos: From: universidad[.]example; Reply-To: cuenta[.]test
+- [F002 / urgent_subject] El asunto contiene lenguaje de urgencia: suspendida, urgente
+- [F003 / link_label_mismatch] El enlace muestra un dominio y apunta a otro: Texto: hxxps://universidad[.]example; destino: hxxp://revision[.]cuenta[.]test/confirmar
+- [F004 / executable_attachment] Adjunto con extensión de ejecución: comprobante[.]pdf[.]exe
+- [F005 / http_link] Enlace HTTP sin cifrado de transporte: hxxp://192[.]0[.]2[.]20/revision
+- [F006 / ip_link] El enlace usa una dirección IP como destino: hxxp://192[.]0[.]2[.]20/revision
+- [F007 / http_link] Enlace HTTP sin cifrado de transporte: hxxp://revision[.]cuenta[.]test/confirmar
+
+Enlaces HTTP(S): 2
+- hxxp://192[.]0[.]2[.]20/revision
+- hxxp://revision[.]cuenta[.]test/confirmar
+
+Adjuntos (sólo metadatos): 1
+- comprobante[.]pdf[.]exe (application/octet-stream)
+
+Las señales requieren revisión humana. Cero señales no demuestra legitimidad. No se verifica SPF, DKIM ni DMARC.
+
+Explicación asistida por IA
+Modo: respuesta guardada; sin nueva inferencia
+Formato, cobertura y referencias comprobados localmente. La veracidad semántica del texto generado no está verificada. Requiere revisión humana.
+
+[F001 / reply_to_domain] Las respuestas se dirigirían a un dominio distinto del usado por el remitente. Puede ser una configuración legítima de atención o una señal que merece revisión; esta diferencia por sí sola no determina la intención del mensaje.
+  Comprobar: Confirmar por un canal conocido qué dirección utiliza la organización para recibir respuestas.
+  Comprobar: Revisar si existe una razón documentada para usar dominios distintos.
+
+[F002 / urgent_subject] El asunto contiene lenguaje de urgencia del conjunto supervisado. La presión temporal puede influir en la atención de quien lee, pero también aparece en comunicaciones legítimas.
+  Comprobar: Verificar por un canal independiente si la situación anunciada requiere una acción real.
+  Comprobar: Revisar el resto del mensaje antes de actuar por la urgencia expresada.
+
+[F003 / link_label_mismatch] El dominio que muestra un enlace difiere de su destino. La comparación sólo describe esa diferencia: no establece quién controla cada dominio ni si existe una relación legítima entre ambos.
+  Comprobar: Comparar el destino real con la dirección obtenida por un canal oficial independiente.
+  Comprobar: Comprobar si la diferencia corresponde a un servicio de enlaces documentado por la organización.
+
+[F004 / executable_attachment] La extensión final del nombre pertenece al conjunto supervisado de ejecución. El analizador sólo revisó el nombre del adjunto; no inspeccionó su contenido ni demostró que sea malicioso.
+  Comprobar: Confirmar si se esperaba recibir ese tipo de archivo y quién lo envió.
+  Comprobar: Solicitar una revisión del adjunto mediante el procedimiento de seguridad correspondiente.
+
+[F005 / http_link] Este enlace utiliza HTTP y carece del cifrado de transporte asociado a HTTPS. Esa característica requiere atención, aunque no demuestra por sí sola que el mensaje sea fraudulento.
+  Comprobar: Consultar la dirección del servicio por una fuente oficial independiente.
+  Comprobar: Comprobar qué información solicitaría el servicio antes de considerar cualquier interacción.
+
+[F006 / ip_link] El destino del enlace está expresado como una dirección IP. Puede tratarse de un recurso legítimo, pero el formato por sí solo no permite atribuir el servicio a una organización.
+  Comprobar: Confirmar con el responsable del servicio si se espera una dirección de este tipo.
+  Comprobar: Revisar la documentación del recurso por una vía independiente del mensaje.
+
+[F007 / http_link] Se observó otro enlace HTTP sin cifrado de transporte. Es un hallazgo separado sobre un enlace distinto; no agrega por sí mismo información sobre la intención o la reputación del remitente.
+  Comprobar: Comprobar por separado si el destino coincide con el servicio que se esperaba utilizar.
+  Comprobar: Consultar una fuente conocida antes de facilitar información al servicio.

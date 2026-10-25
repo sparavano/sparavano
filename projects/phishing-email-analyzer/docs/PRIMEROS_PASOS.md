@@ -26,6 +26,7 @@ Leé el código en este orden:
 3. Las funciones que obtienen dominios, enlaces y nombres de adjuntos.
 4. Las condiciones que agregan hallazgos.
 5. La salida: cómo muestra el motivo y la evidencia.
+6. En `ai_explainer.py`, la solicitud minimizada y el validador de respuestas.
 
 En cada función, identificá qué dato recibe, qué devuelve y qué condición evalúa. No hace falta memorizar todas las bibliotecas para entender la decisión que toma una regla.
 
@@ -60,7 +61,70 @@ py -3 phishing_analyzer.py examples\sospechoso.eml --json | Set-Content -Encodin
 
 Abrí el JSON y relacioná sus hallazgos con los que viste en la consola. Usá datos ficticios si querés compartir un reporte.
 
-## 5. Trabajar con el laboratorio en GitHub
+## 5. Ver una explicación de IA guardada
+
+```powershell
+py -3 phishing_analyzer.py examples\sospechoso.eml --ai-response examples\ai_response_demo.json
+```
+
+Este comando carga y valida un JSON existente. No hace una nueva inferencia ni una llamada de red. La demo fue preparada por el asistente durante el desarrollo; consultá su [procedencia](PROVENIENCIA_IA.md).
+
+Compará cada `finding_id` y `rule` con los hallazgos del reporte. Leé las comprobaciones manuales y marcá cuáles podés realizar. La validación del archivo comprueba referencias y formato, pero puede aceptar una afirmación semánticamente falsa.
+
+## 6. Pedir una explicación mediante un intercambio manual
+
+Primero exportá la solicitud:
+
+```powershell
+py -3 phishing_analyzer.py examples\sospechoso.eml --export-ai-request reports\solicitud_ia.json
+```
+
+Abrí `reports\solicitud_ia.json` en un editor. Contiene un `request_id`, los hallazgos minimizados, instrucciones y el esquema que debe tener la respuesta. No contiene encabezados, cuerpo, evidencias, URL ni el hash del correo.
+
+Copiá el paquete completo a la herramienta de IA elegida y pedile que siga las instrucciones y devuelva únicamente el JSON del esquema. Ese intercambio ocurre fuera del analizador y comparte el paquete con el servicio que elijas.
+
+Guardá la respuesta como `reports\respuesta_ia.json`, en UTF-8, sin bloques Markdown ni texto antes o después del JSON. Luego importala usando el mismo correo:
+
+```powershell
+py -3 phishing_analyzer.py examples\sospechoso.eml --ai-response reports\respuesta_ia.json
+```
+
+Si la respuesta no corresponde a la solicitud, omite hallazgos, agrega identificadores o incumple otro control, el validador la rechaza. Conservá la revisión del contenido: un formato correcto no demuestra que la explicación sea verdadera.
+
+El `request_id` deriva de los hechos minimizados y la versión del contrato. No identifica de manera única el correo: mensajes distintos pueden producir la misma solicitud si activan las mismas reglas en el mismo orden.
+
+## 7. Integración opcional con OpenAI
+
+Este es el único modo del programa que realiza una consulta de red. Envía la solicitud minimizada a Responses API; no envía el correo completo.
+
+Requiere estas variables de entorno en la sesión donde ejecutes Python:
+
+- `OPENAI_API_KEY`: tu clave de API, configurada localmente fuera del chat y del repositorio.
+- `OPENAI_MODEL`: el identificador del modelo que elijas y al que tenga acceso tu cuenta.
+
+El programa no elige un modelo por defecto ni carga automáticamente archivos `.env`. Una vez configurado el entorno, el comando es:
+
+```powershell
+py -3 phishing_analyzer.py examples\sospechoso.eml --ai-openai
+```
+
+**Estado en esta entrega:** no hay una credencial configurada en esta PC. La llamada HTTP real al proveedor no se ha probado. La demo guardada y las pruebas sin red no prueban conectividad, credenciales ni comportamiento real del modelo.
+
+Con cero hallazgos, el programa omite la consulta al proveedor: no hay señales que explicar. Esto tampoco determina que el correo sea seguro.
+
+## 8. Ejecutar la evaluación sin red
+
+```powershell
+py -3 evals\offline_suite.py
+```
+
+La suite usa casos sintéticos y guarda los resultados en [EVALUACION.md](EVALUACION.md) y [EVALUACION.json](EVALUACION.json). Revisá qué casos acepta o rechaza y el caso que expone el límite semántico: una explicación puede conservar identificadores y estructura mientras afirma algo falso.
+
+Para practicar evaluación técnica de IA, registrá por separado el comportamiento esperado, el resultado observado y lo que ese caso permite concluir. Estos resultados no miden precisión de detección en correos reales ni calidad de una API remota.
+
+Consultá [Arquitectura de IA](ARQUITECTURA_IA.md) para revisar las fronteras entre reglas, generador de explicaciones y validador.
+
+## 9. Trabajar con el laboratorio en GitHub
 
 Si todavía no tenés una copia local del repositorio, abrí PowerShell en la carpeta donde quieras guardarlo:
 
@@ -80,7 +144,7 @@ git pull
 Después de trabajar en el código o la documentación, prepará los archivos del laboratorio desde esa misma carpeta:
 
 ```powershell
-git add phishing_analyzer.py demo.cmd README.md .gitignore examples tests docs
+git add -- "*.py" demo.cmd README.md .gitignore examples tests docs evals
 git status --short
 git diff --cached --stat
 git diff --cached
@@ -97,10 +161,10 @@ git push
 
 Podés revisar el resultado en [el laboratorio público](https://github.com/sparavano/sparavano/tree/main/projects/phishing-email-analyzer). No pegues contraseñas ni tokens dentro del código o del README.
 
-## 6. Describir lo que hiciste
+## 10. Describir lo que hiciste
 
 Después de ejecutar y entender la primera versión, podés adaptar esta descripción a lo que efectivamente hayas trabajado:
 
-> Laboratorio educativo en Python para revisar señales de phishing en archivos `.eml`. Analiza encabezados, enlaces y nombres de adjuntos de forma local. Incluye ejemplos ficticios, pruebas y documentación de sus límites.
+> Laboratorio educativo en Python para revisar señales de phishing en archivos `.eml`. Combina reglas locales con una capa opcional de explicación por IA, solicitudes minimizadas y validación de respuestas. Incluye ejemplos ficticios y una evaluación con casos sintéticos que documenta el alcance y los límites de los controles.
 
-Agregá qué parte revisaste o modificaste y qué aprendiste. La descripción debe reflejar el alcance de las reglas y los resultados que comprobaste.
+Agregá qué parte revisaste o modificaste y qué aprendiste. La descripción debe reflejar el alcance de las reglas y los resultados que comprobaste. Si no ejecutaste la integración real, mantené visible que esa prueba está pendiente.

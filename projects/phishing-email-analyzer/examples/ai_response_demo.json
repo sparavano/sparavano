@@ -1,0 +1,69 @@
+{
+  "request_id": "70165dadbdaa20d2358727fee8776ff6e4004f0b61ec2decdf46a9ebfff93ca4",
+  "review_required": true,
+  "explanations": [
+    {
+      "finding_id": "F001",
+      "rule": "reply_to_domain",
+      "explanation": "Las respuestas se dirigirían a un dominio distinto del usado por el remitente. Puede ser una configuración legítima de atención o una señal que merece revisión; esta diferencia por sí sola no determina la intención del mensaje.",
+      "manual_checks": [
+        "Confirmar por un canal conocido qué dirección utiliza la organización para recibir respuestas.",
+        "Revisar si existe una razón documentada para usar dominios distintos."
+      ]
+    },
+    {
+      "finding_id": "F002",
+      "rule": "urgent_subject",
+      "explanation": "El asunto contiene lenguaje de urgencia del conjunto supervisado. La presión temporal puede influir en la atención de quien lee, pero también aparece en comunicaciones legítimas.",
+      "manual_checks": [
+        "Verificar por un canal independiente si la situación anunciada requiere una acción real.",
+        "Revisar el resto del mensaje antes de actuar por la urgencia expresada."
+      ]
+    },
+    {
+      "finding_id": "F003",
+      "rule": "link_label_mismatch",
+      "explanation": "El dominio que muestra un enlace difiere de su destino. La comparación sólo describe esa diferencia: no establece quién controla cada dominio ni si existe una relación legítima entre ambos.",
+      "manual_checks": [
+        "Comparar el destino real con la dirección obtenida por un canal oficial independiente.",
+        "Comprobar si la diferencia corresponde a un servicio de enlaces documentado por la organización."
+      ]
+    },
+    {
+      "finding_id": "F004",
+      "rule": "executable_attachment",
+      "explanation": "La extensión final del nombre pertenece al conjunto supervisado de ejecución. El analizador sólo revisó el nombre del adjunto; no inspeccionó su contenido ni demostró que sea malicioso.",
+      "manual_checks": [
+        "Confirmar si se esperaba recibir ese tipo de archivo y quién lo envió.",
+        "Solicitar una revisión del adjunto mediante el procedimiento de seguridad correspondiente."
+      ]
+    },
+    {
+      "finding_id": "F005",
+      "rule": "http_link",
+      "explanation": "Este enlace utiliza HTTP y carece del cifrado de transporte asociado a HTTPS. Esa característica requiere atención, aunque no demuestra por sí sola que el mensaje sea fraudulento.",
+      "manual_checks": [
+        "Consultar la dirección del servicio por una fuente oficial independiente.",
+        "Comprobar qué información solicitaría el servicio antes de considerar cualquier interacción."
+      ]
+    },
+    {
+      "finding_id": "F006",
+      "rule": "ip_link",
+      "explanation": "El destino del enlace está expresado como una dirección IP. Puede tratarse de un recurso legítimo, pero el formato por sí solo no permite atribuir el servicio a una organización.",
+      "manual_checks": [
+        "Confirmar con el responsable del servicio si se espera una dirección de este tipo.",
+        "Revisar la documentación del recurso por una vía independiente del mensaje."
+      ]
+    },
+    {
+      "finding_id": "F007",
+      "rule": "http_link",
+      "explanation": "Se observó otro enlace HTTP sin cifrado de transporte. Es un hallazgo separado sobre un enlace distinto; no agrega por sí mismo información sobre la intención o la reputación del remitente.",
+      "manual_checks": [
+        "Comprobar por separado si el destino coincide con el servicio que se esperaba utilizar.",
+        "Consultar una fuente conocida antes de facilitar información al servicio."
+      ]
+    }
+  ]
+}

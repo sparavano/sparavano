@@ -13,7 +13,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 MAX_BYTES = 10 * 1024 * 1024
 URL_PATTERN = re.compile(r"https?://[^\s<>\"']+", re.IGNORECASE)
 URGENCY_PATTERN = re.compile(
@@ -200,6 +200,9 @@ def analyze_bytes(data, filename="correo.eml"):
         if parts.username is not None or parts.password is not None:
             add("userinfo_link", "El enlace contiene información de usuario antes de @", evidence)
 
+    for index, finding in enumerate(findings, 1):
+        finding["finding_id"] = f"F{index:03d}"
+
     return {
         "version": VERSION,
         "file": clean_text(Path(filename).name),
@@ -231,7 +234,7 @@ def format_report(report):
         f"\nSeñales encontradas: {len(report['findings'])}",
     ]
     for finding in report["findings"]:
-        lines.append(f"- [{finding['rule']}] {finding['title']}: {finding['evidence']}")
+        lines.append(f"- [{finding['finding_id']} / {finding['rule']}] {finding['title']}: {finding['evidence']}")
     if not report["findings"]:
         lines.append("- No se encontraron señales con las reglas de esta versión.")
     lines.append(f"\nEnlaces HTTP(S): {len(report['urls'])}")
@@ -240,6 +243,11 @@ def format_report(report):
     lines.extend(f"- {item['filename']} ({item['content_type']})" for item in report["attachments"])
     lines.extend(f"Nota: {note}" for note in report["notes"])
     lines.append(f"\n{report['limitation']}")
+    if "ai_request_exported" in report:
+        lines.append(f"Solicitud minimizada guardada: {report['ai_request_exported']}")
+    if "ai_explanation" in report:
+        from ai_explainer import format_explanation
+        lines.append(format_explanation(report["ai_explanation"]))
     return "\n".join(lines)
 
 
@@ -252,11 +260,34 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("file", type=Path, help="Archivo .eml para revisar localmente")
     parser.add_argument("--json", action="store_true", help="Emite el informe en JSON")
+    ai_options = parser.add_mutually_exclusive_group()
+    ai_options.add_argument("--export-ai-request", type=Path, metavar="RUTA", help="Exporta una solicitud minimizada de IA, sin hacer consultas de red")
+    ai_options.add_argument("--ai-response", type=Path, metavar="RUTA", help="Valida e incorpora una respuesta JSON guardada de IA, sin consultar un modelo")
+    ai_options.add_argument("--ai-openai", action="store_true", help="Consulta opcionalmente OpenAI con datos minimizados; requiere API key y modelo por entorno")
     args = parser.parse_args(argv)
     try:
         report = analyze_file(args.file)
+        if args.export_ai_request or args.ai_response or args.ai_openai:
+            from ai_explainer import build_ai_request, load_response, save_request, validate_response
+            bundle = build_ai_request(report)
+            if args.export_ai_request:
+                save_request(bundle, args.export_ai_request, args.file)
+                report["ai_request_exported"] = clean_text(args.export_ai_request.name)
+            elif args.ai_response:
+                explanation = validate_response(load_response(args.ai_response), bundle)
+                explanation["mode"] = "respuesta guardada; sin nueva inferencia"
+                report["ai_explanation"] = explanation
+            elif not bundle["findings"]:
+                explanation = validate_response({"request_id": bundle["request_id"], "review_required": True, "explanations": []}, bundle)
+                explanation["mode"] = "omitido: no hay hallazgos"
+                report["ai_explanation"] = explanation
+            else:
+                from openai_provider import request_explanation
+                explanation = validate_response(request_explanation(bundle), bundle)
+                explanation["mode"] = "OpenAI Responses API"
+                report["ai_explanation"] = explanation
     except (OSError, ValueError, RecursionError) as error:
-        print(f"No se pudo analizar el correo: {clean_text(error)}", file=sys.stderr)
+        print(f"No se pudo completar el análisis: {clean_text(error)}", file=sys.stderr)
         return 2
     print(json.dumps(report, ensure_ascii=False, indent=2) if args.json else format_report(report))
     return 0

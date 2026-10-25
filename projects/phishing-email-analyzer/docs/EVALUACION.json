@@ -1,0 +1,218 @@
+{
+  "metadata": {
+    "date": "2026-10-25",
+    "evaluation": "Contrato local con fixtures sintéticas",
+    "response_source": "Respuestas sintéticas construidas a mano; no son salidas de un modelo",
+    "real_model_inference": false,
+    "live_api_tested": false,
+    "semantic_truth_verified": false,
+    "request_id_source": "SHA-256 de hechos minimizados del contrato; no es un hash de correo"
+  },
+  "request_id": "28b72caa48b54c630ef814d11789ce74754bdb53c51cd632dec2110959ec6bd2",
+  "contract_checks": {
+    "total": 27,
+    "passed": 27,
+    "failed": 0,
+    "cases": [
+      {
+        "id": "valid_structure",
+        "description": "Respuesta completa con referencias válidas.",
+        "expected": "accepted",
+        "observed": "accepted",
+        "contract_check_passed": true
+      },
+      {
+        "id": "valid_reordered",
+        "description": "Referencias válidas recibidas en otro orden.",
+        "expected": "accepted",
+        "observed": "accepted",
+        "contract_check_passed": true
+      },
+      {
+        "id": "wrong_request",
+        "description": "Respuesta vinculada a otra solicitud.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "extra_root_field",
+        "description": "Campo adicional fuera del contrato.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "missing_root_field",
+        "description": "Campo obligatorio ausente.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "review_disabled",
+        "description": "Se intenta eliminar la revisión humana.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "review_not_boolean",
+        "description": "Revisión humana con tipo numérico.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "missing_finding",
+        "description": "Falta una explicación requerida.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "unknown_finding",
+        "description": "Referencia a un identificador inexistente.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "duplicate_finding",
+        "description": "Identificador repetido en lugar de cubrir otro hallazgo.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "wrong_rule",
+        "description": "Regla que no corresponde al identificador.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "extra_item_field",
+        "description": "Campo adicional dentro de una explicación.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "short_explanation",
+        "description": "Explicación por debajo de la longitud mínima.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "long_explanation",
+        "description": "Explicación que excede la longitud máxima.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "wrong_text_type",
+        "description": "Explicación con tipo no textual.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "missing_manual_checks",
+        "description": "Lista de comprobaciones manuales vacía.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "too_many_manual_checks",
+        "description": "Cantidad excesiva de comprobaciones.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "control_character",
+        "description": "Carácter de control en la explicación.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "hidden_format",
+        "description": "Carácter de formato oculto en la explicación.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "new_url",
+        "description": "URL añadida en la prosa de respuesta.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "new_email",
+        "description": "Dirección de correo añadida en una comprobación.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "new_ip",
+        "description": "Dirección IP añadida en la prosa de respuesta.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "empty_valid",
+        "description": "Sin hallazgos y sin explicaciones.",
+        "expected": "accepted",
+        "observed": "accepted",
+        "contract_check_passed": true
+      },
+      {
+        "id": "empty_invented",
+        "description": "Sin hallazgos pero con una explicación añadida.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "minimization",
+        "description": "Metadatos y texto de origen no pasan al bundle.",
+        "expected": "omitted",
+        "observed": "omitted",
+        "contract_check_passed": true
+      },
+      {
+        "id": "unknown_source_rule",
+        "description": "El bundle rechaza reglas ajenas al catálogo.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      },
+      {
+        "id": "duplicate_json_keys",
+        "description": "El importador rechaza claves JSON repetidas.",
+        "expected": "rejected",
+        "observed": "rejected",
+        "contract_check_passed": true
+      }
+    ]
+  },
+  "semantic_limit_control": {
+    "id": "unsupported_authentication_claim",
+    "description": "Una afirmación falsa sobre autenticación conserva IDs y formato válidos.",
+    "expected_observed_behavior": "accepted",
+    "observed": "accepted",
+    "known_semantic_falsehood_accepted": true,
+    "implementation_error": false,
+    "interpretation": "Demuestra que aceptar el contrato no acredita verdad semántica. Requiere revisión humana."
+  },
+  "scope": "Comprueba casos del contrato y documenta una limitación. No mide detección de phishing, exactitud de un modelo ni resistencia universal a inyecciones o alucinaciones."
+}
