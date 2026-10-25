@@ -19,7 +19,17 @@ El análisis del correo y las reglas ocurren en tu PC. La herramienta no abre en
 
 ## Empezar en Windows
 
-En Windows podés abrir **`demo.cmd` con doble clic** para ejecutar los dos correos de ejemplo y reproducir la explicación de IA guardada. El lanzador busca el Python incluido con Codex o el lanzador `py` de Windows. No instala programas ni cambia la configuración del equipo.
+El inicio recomendado es **abrir `modo_manual.cmd` con doble clic**. Su asistente local permite preparar una solicitud, validar la respuesta que guardes o ver la demo existente. No llama a ninguna API.
+
+1. Elegí **1: preparar**. Podés aceptar el ejemplo ficticio `examples\revision_enlace.eml`.
+2. Abrí `reports\LEEME_IA.txt` con el Bloc de notas. Copiá su contenido completo a ChatGPT o a la herramienta de chat que elijas.
+3. Guardá la respuesta como JSON puro en `reports\respuesta_ia.json`, sin bloques Markdown ni texto adicional.
+4. Volvé al asistente y elegí **2: validar**, usando el mismo correo y el archivo de respuesta.
+5. Revisá `reports\informe_manual.txt` y `reports\informe_manual.json`. La explicación sigue necesitando revisión humana.
+
+Este flujo funciona **sin clave ni créditos de API**. La herramienta de chat elegida puede consumir su propio plan o cuota. Al pegar el contenido de `LEEME_IA.txt`, compartís únicamente el paquete minimizado con ese servicio.
+
+También podés abrir **`demo.cmd` con doble clic** para ejecutar los dos correos de ejemplo y reproducir la explicación de IA guardada. Los lanzadores buscan el Python incluido con Codex o el lanzador `py` de Windows. No instalan programas ni cambian la configuración del equipo.
 
 Para ejecutar comandos por tu cuenta:
 
@@ -62,17 +72,26 @@ Este comando **importa una respuesta existente**; no genera una nueva respuesta 
 
 También está documentada una [prueba de intercambio manual con una respuesta nueva](docs/PRUEBA_MANUAL_IA.md), realizada con otro correo ficticio y un contexto de generación separado. Incluye solicitud, respuesta, salida de la CLI y un control negativo de referencia. Sigue siendo una sola muestra, no un benchmark.
 
-Para trabajar manualmente con la herramienta de IA que elijas:
+Para preparar el intercambio manual por comando:
 
 ```powershell
-py -3 phishing_analyzer.py examples\sospechoso.eml --export-ai-request reports\solicitud_ia.json
+py -3 manual_mode.py --prepare examples\revision_enlace.eml
+notepad reports\LEEME_IA.txt
 ```
 
-El archivo exportado contiene instrucciones, un esquema de respuesta y hallazgos con identificadores y observaciones de un catálogo fijo. **No contiene encabezados, cuerpo, evidencias, URL ni el hash del correo.** Podés copiar ese paquete a la herramienta elegida, guardar su respuesta como JSON puro y cargarla con `--ai-response`. Al copiar el paquete a un servicio externo, lo compartís con ese servicio.
+El asistente crea `reports\solicitud_ia.json` y `reports\LEEME_IA.txt`. El paquete contiene instrucciones, un esquema de respuesta y hallazgos con identificadores y observaciones de un catálogo fijo. **No contiene encabezados, cuerpo, evidencias, URL ni el hash del correo.** El asistente lee el `.eml` desde la ruta indicada y no copia el correo al repositorio.
+
+Después de guardar el JSON devuelto por la herramienta de chat:
+
+```powershell
+py -3 manual_mode.py --validate examples\revision_enlace.eml reports\respuesta_ia.json
+```
+
+La validación guarda los informes de revisión en `reports/`. El comando de bajo nivel `--export-ai-request` y la importación con `--ai-response` siguen disponibles en `phishing_analyzer.py`.
 
 La integración opcional `--ai-openai` usa Responses API. Requiere `OPENAI_API_KEY` y `OPENAI_MODEL` en el entorno; el proyecto no fija un modelo ni carga archivos `.env`. La clave se configura localmente, fuera del chat y del repositorio.
 
-**Estado de esa integración:** no hay una credencial configurada en esta PC y la llamada HTTP real al proveedor no se ha probado. Las pruebas locales y la demo guardada no sustituyen esa prueba. Con cero hallazgos, este modo omite la consulta al proveedor.
+**Estado de esa integración:** no hay una prueba exitosa de generación por API en vivo. El flujo principal es manual. Las pruebas locales y la demo guardada no sustituyen una generación real por API. Con cero hallazgos, este modo omite la consulta al proveedor.
 
 Consultá [Primeros pasos](docs/PRIMEROS_PASOS.md) para ejecutar cada modo y [Arquitectura de IA](docs/ARQUITECTURA_IA.md) para revisar el flujo de datos y los controles.
 
@@ -87,7 +106,7 @@ La suite de evaluación registra resultados en [EVALUACION.md](docs/EVALUACION.m
 
 El validador comprueba estructura, cobertura, identificadores, reglas, correspondencia de la solicitud y algunos patrones de salida. **No verifica por completo la verdad del texto generado.** Una explicación falsa con referencias válidas puede pasar esos controles.
 
-En la preparación de esta versión pasaron **56 pruebas automatizadas** y **27 casos sintéticos de contrato**. El control semántico se registra por separado y muestra una falsedad aceptada por el validador; no se presenta como una explicación correcta ni como una medición de precisión del modelo.
+La evaluación incluye **27 casos sintéticos de contrato**. El control semántico se registra por separado y muestra una falsedad aceptada por el validador; no se presenta como una explicación correcta ni como una medición de precisión del modelo. Las pruebas automatizadas también cubren el analizador y los controles locales.
 
 ## Cómo interpretar los resultados
 

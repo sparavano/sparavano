@@ -116,7 +116,7 @@ Los casos sintéticos no constituyen un benchmark con correos reales. Tampoco ev
 
 La respuesta de demostración fue preparada por el asistente durante el desarrollo; su origen se documenta en [PROVENIENCIA_IA.md](PROVENIENCIA_IA.md). Importarla sólo permite revisar una respuesta guardada.
 
-**Integración HTTP real:** no se ha probado con el proveedor porque en esta PC no hay una credencial configurada. Verificar esa integración requiere una ejecución posterior con el entorno configurado. Las pruebas locales no sustituyen esa verificación.
+**Integración HTTP real:** no hay una prueba exitosa de generación por API en vivo. El recorrido principal usa `modo_manual.cmd`: prepara un paquete para copiar a un chat e importa la respuesta guardada. Ese asistente no realiza llamadas de red. Las pruebas locales no sustituyen la verificación de una generación por API.
 
 ## 7. Uso como ejercicio de auditoría técnica
 

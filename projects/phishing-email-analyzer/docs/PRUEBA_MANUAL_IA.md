@@ -44,4 +44,4 @@ Desde la carpeta del laboratorio:
 py -3 phishing_analyzer.py examples\revision_enlace.eml --ai-response examples\respuesta_manual.json
 ```
 
-Para obtener otra respuesta, exportá una solicitud con `--export-ai-request`, usá el intercambio manual con la herramienta elegida y guardá el JSON nuevo. La integración automática `--ai-openai` requiere una credencial y su prueba real sigue pendiente.
+Para obtener otra respuesta, abrí `modo_manual.cmd` y elegí la opción 1. Copiá el texto preparado a la herramienta de chat elegida, guardá el JSON nuevo y elegí la opción 2 para validarlo. También está disponible `--export-ai-request` en la CLI original. No hay una generación exitosa por API verificada para la integración opcional `--ai-openai`.

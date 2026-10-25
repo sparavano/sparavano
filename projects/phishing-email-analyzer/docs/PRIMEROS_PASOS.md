@@ -2,9 +2,26 @@
 
 El objetivo de esta primera etapa es que puedas ejecutar el proyecto, entender cada regla y explicar sus resultados. La ubicación pública del laboratorio es [sparavano/sparavano · projects/phishing-email-analyzer](https://github.com/sparavano/sparavano/tree/main/projects/phishing-email-analyzer).
 
-## 1. Ejecutar los dos ejemplos
+## 1. Empezar con el asistente manual
 
-Para la primera prueba en esta PC, hacé doble clic en `demo.cmd`. Se abrirá una consola con ambos resultados. Después podés pasar a los comandos y ejercicios de esta guía.
+Hacé doble clic en **`modo_manual.cmd`**. El menú ofrece:
+
+- **1: preparar** una solicitud. El ejemplo predeterminado es `examples\revision_enlace.eml`.
+- **2: validar** una respuesta guardada. La ruta de respuesta predeterminada es `reports\respuesta_ia.json`.
+- **3: ver** la demo de IA ya guardada. Sus informes se guardan en `reports\demo\`, separados de tu revisión.
+- **0: salir**.
+
+Elegí **1** y aceptá el ejemplo para comenzar. El asistente crea `reports\solicitud_ia.json` y `reports\LEEME_IA.txt`. Abrí el segundo archivo en el Bloc de notas y copiá todo su contenido a ChatGPT o a la herramienta de chat elegida.
+
+Guardá la respuesta como **`reports\respuesta_ia.json`**, en UTF-8, con sólo el objeto JSON. Quitá los delimitadores de bloque Markdown si el chat los agregó; no guardes texto introductorio o explicaciones fuera del JSON. En el Bloc de notas, elegí el tipo **Todos los archivos** para conservar la extensión `.json`.
+
+Volvé al asistente y elegí **2**. Usá el mismo correo de la preparación y la respuesta guardada. Si pasa los controles, se generan `reports\informe_manual.json` y `reports\informe_manual.txt`. Abrí el informe de texto y revisá las explicaciones y comprobaciones manuales.
+
+El asistente funciona sin clave ni créditos de API y no hace llamadas de red. La herramienta de chat que elijas puede consumir su propio plan o cuota. Al copiar el texto preparado, compartís el paquete minimizado con ese servicio.
+
+### Análisis local básico
+
+Para ver los ejemplos y la demo guardada directamente, también podés abrir `demo.cmd`. Después podés pasar a los comandos y ejercicios de esta guía.
 
 Abrí PowerShell en la carpeta `phishing-email-analyzer`:
 
@@ -73,23 +90,34 @@ Compará cada `finding_id` y `rule` con los hallazgos del reporte. Leé las comp
 
 ## 6. Pedir una explicación mediante un intercambio manual
 
-Primero exportá la solicitud:
+El asistente del inicio también se puede usar desde PowerShell:
 
 ```powershell
-py -3 phishing_analyzer.py examples\sospechoso.eml --export-ai-request reports\solicitud_ia.json
+py -3 manual_mode.py --prepare examples\revision_enlace.eml
+notepad reports\LEEME_IA.txt
 ```
 
-Abrí `reports\solicitud_ia.json` en un editor. Contiene un `request_id`, los hallazgos minimizados, instrucciones y el esquema que debe tener la respuesta. No contiene encabezados, cuerpo, evidencias, URL ni el hash del correo.
+La preparación crea `reports\solicitud_ia.json` y `reports\LEEME_IA.txt`. La solicitud contiene un `request_id`, los hallazgos minimizados, instrucciones y el esquema que debe tener la respuesta. No contiene encabezados, cuerpo, evidencias, URL ni el hash del correo.
 
-Copiá el paquete completo a la herramienta de IA elegida y pedile que siga las instrucciones y devuelva únicamente el JSON del esquema. Ese intercambio ocurre fuera del analizador y comparte el paquete con el servicio que elijas.
+Copiá todo `LEEME_IA.txt` al chat elegido. El archivo ya incluye las instrucciones y el paquete para pedir únicamente el JSON del esquema. Ese intercambio ocurre fuera del analizador.
 
-Guardá la respuesta como `reports\respuesta_ia.json`, en UTF-8, sin bloques Markdown ni texto antes o después del JSON. Luego importala usando el mismo correo:
+Guardá la respuesta como `reports\respuesta_ia.json`, en UTF-8, sin bloques Markdown ni texto antes o después del JSON. Luego validala usando el mismo correo:
 
 ```powershell
-py -3 phishing_analyzer.py examples\sospechoso.eml --ai-response reports\respuesta_ia.json
+py -3 manual_mode.py --validate examples\revision_enlace.eml reports\respuesta_ia.json
+notepad reports\informe_manual.txt
 ```
 
-Si la respuesta no corresponde a la solicitud, omite hallazgos, agrega identificadores o incumple otro control, el validador la rechaza. Conservá la revisión del contenido: un formato correcto no demuestra que la explicación sea verdadera.
+Si la respuesta no corresponde a la solicitud, omite hallazgos, agrega identificadores o incumple otro control, el validador la rechaza. Si pasa esos controles, guarda `reports\informe_manual.json` y `reports\informe_manual.txt`. Conservá la revisión del contenido: un formato correcto no demuestra que la explicación sea verdadera.
+
+Para trabajar con otro `.eml`, reemplazá la ruta del ejemplo por la ruta del archivo en ambos comandos. El asistente lo lee desde su ubicación y no copia el correo al repositorio. Los informes locales pueden contener evidencia del correo; mantenelos fuera de la publicación.
+
+Los comandos de bajo nivel siguen disponibles:
+
+```powershell
+py -3 phishing_analyzer.py examples\revision_enlace.eml --export-ai-request reports\solicitud_ia.json
+py -3 phishing_analyzer.py examples\revision_enlace.eml --ai-response reports\respuesta_ia.json
+```
 
 El `request_id` deriva de los hechos minimizados y la versión del contrato. No identifica de manera única el correo: mensajes distintos pueden producir la misma solicitud si activan las mismas reglas en el mismo orden.
 
@@ -108,7 +136,7 @@ El programa no elige un modelo por defecto ni carga automáticamente archivos `.
 py -3 phishing_analyzer.py examples\sospechoso.eml --ai-openai
 ```
 
-**Estado en esta entrega:** no hay una credencial configurada en esta PC. La llamada HTTP real al proveedor no se ha probado. La demo guardada y las pruebas sin red no prueban conectividad, credenciales ni comportamiento real del modelo.
+**Estado en esta entrega:** no hay una prueba exitosa de generación por API en vivo. El flujo principal es manual y no necesita clave ni créditos de API. La demo guardada y las pruebas sin red no prueban el comportamiento real del proveedor.
 
 Con cero hallazgos, el programa omite la consulta al proveedor: no hay señales que explicar. Esto tampoco determina que el correo sea seguro.
 
@@ -144,7 +172,7 @@ git pull
 Después de trabajar en el código o la documentación, prepará los archivos del laboratorio desde esa misma carpeta:
 
 ```powershell
-git add -- "*.py" demo.cmd README.md .gitignore examples tests docs evals
+git add -- "*.py" demo.cmd modo_manual.cmd README.md .gitignore examples tests docs evals
 git status --short
 git diff --cached --stat
 git diff --cached
@@ -167,4 +195,4 @@ Después de ejecutar y entender la primera versión, podés adaptar esta descrip
 
 > Laboratorio educativo en Python para revisar señales de phishing en archivos `.eml`. Combina reglas locales con una capa opcional de explicación por IA, solicitudes minimizadas y validación de respuestas. Incluye ejemplos ficticios y una evaluación con casos sintéticos que documenta el alcance y los límites de los controles.
 
-Agregá qué parte revisaste o modificaste y qué aprendiste. La descripción debe reflejar el alcance de las reglas y los resultados que comprobaste. Si no ejecutaste la integración real, mantené visible que esa prueba está pendiente.
+Agregá qué parte revisaste o modificaste y qué aprendiste. La descripción debe reflejar el alcance de las reglas y los resultados que comprobaste. Distinguí una explicación nueva obtenida por intercambio manual, una demo guardada y una generación por API. En esta entrega no hay una prueba exitosa de generación por API en vivo.
