@@ -152,6 +152,10 @@ Para practicar evaluación técnica de IA, registrá por separado el comportamie
 
 Consultá [Arquitectura de IA](ARQUITECTURA_IA.md) para revisar las fronteras entre reglas, generador de explicaciones y validador.
 
+### Una señal en un caso benigno
+
+Completá el [ejercicio de urgencia en un aviso autorizado ficticio](CASO_URGENCIA_BENIGNA.md). Compara una variante con «URGENTE» y otra idéntica con «Aviso». El objetivo es explicar por qué una regla puede activarse en un escenario benigno y por qué esa señal necesita revisión contextual. Reproducilo con `py -3 evals\urgency_context.py`.
+
 ## 9. Trabajar con el laboratorio en GitHub
 
 Si todavía no tenés una copia local del repositorio, abrí PowerShell en la carpeta donde quieras guardarlo:

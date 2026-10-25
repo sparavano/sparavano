@@ -9,6 +9,7 @@
 - Adaptador opcional para OpenAI Responses API, con modelo y clave configurados explícitamente.
 - Validación local de estructura, cobertura y referencias, con controles parciales sobre indicadores nuevos.
 - Evaluación sintética que separa cumplimiento del contrato de veracidad semántica.
+- Caso benigno sintético con urgencia y un control que cambia sólo el prefijo del asunto; documenta el falso positivo potencial de interpretar una señal como un veredicto.
 - Documentación de arquitectura, procedencia y límites. No hay una prueba exitosa de generación por API en vivo; el recorrido principal es manual.
 
 ## 0.1.0 — 24 de octubre de 2026

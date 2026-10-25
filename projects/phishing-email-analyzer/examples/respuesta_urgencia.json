@@ -1,0 +1,15 @@
+{
+  "request_id": "1a67de8b793576746b545dbb9434297e5f9057f7b0a3ac328bc781c7ac25dd19",
+  "review_required": true,
+  "explanations": [
+    {
+      "finding_id": "F001",
+      "rule": "urgent_subject",
+      "explanation": "El asunto contiene una expresión incluida en el conjunto supervisado de urgencia. Ese lenguaje también aparece en mensajes legítimos, por lo que esta observación requiere contexto para su revisión.",
+      "manual_checks": [
+        "Revisar el mensaje completo y comprobar si explica el motivo de la urgencia.",
+        "Confirmar por un canal habitual e independiente si existe el plazo o la gestión indicada, en caso de que se mencione alguno."
+      ]
+    }
+  ]
+}

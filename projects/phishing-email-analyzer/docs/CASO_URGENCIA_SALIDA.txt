@@ -1,0 +1,23 @@
+Analizador de phishing v0.2.0
+Archivo: aviso_legitimo_urgente.eml
+SHA-256: 09198e7f1981d2902136e4b9159133932b09f2173d2348732d4285c65ab2c022
+From: Coordinacion del laboratorio <coordinacion@universidad[.]example>
+Reply-To: coordinacion@universidad[.]example
+Asunto: URGENTE: cambio de aula de la clase de hoy
+
+Señales encontradas: 1
+- [F001 / urgent_subject] El asunto contiene lenguaje de urgencia: urgente
+
+Enlaces HTTP(S): 0
+
+Adjuntos (sólo metadatos): 0
+
+Las señales requieren revisión humana. Cero señales no demuestra legitimidad. No se verifica SPF, DKIM ni DMARC.
+
+Explicación asistida por IA
+Modo: respuesta guardada; sin nueva inferencia
+Formato, cobertura y referencias comprobados localmente. La veracidad semántica del texto generado no está verificada. Requiere revisión humana.
+
+[F001 / urgent_subject] El asunto contiene una expresión incluida en el conjunto supervisado de urgencia. Ese lenguaje también aparece en mensajes legítimos, por lo que esta observación requiere contexto para su revisión.
+  Comprobar: Revisar el mensaje completo y comprobar si explica el motivo de la urgencia.
+  Comprobar: Confirmar por un canal habitual e independiente si existe el plazo o la gestión indicada, en caso de que se mencione alguno.

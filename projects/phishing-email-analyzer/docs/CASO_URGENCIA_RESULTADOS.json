@@ -1,0 +1,37 @@
+{
+  "case": "Señal de urgencia en un caso benigno sintético",
+  "fixture_design_date": "2026-10-25",
+  "scenario_label": "Aviso autorizado de cambio de aula, definido por construcción del ejercicio; no es una verificación de autenticidad de un correo real.",
+  "response_source": "Nueva respuesta generada por un agente de esta sesión sin historial heredado. Recibió sólo el paquete minimizado y las instrucciones de formato; no recibió el correo ni la etiqueta benigna y no usó herramientas. La reproducción importa ese JSON guardado.",
+  "application_called_provider_api": false,
+  "semantic_truth_automatically_verified": false,
+  "human_review_required": true,
+  "request_id": "1a67de8b793576746b545dbb9434297e5f9057f7b0a3ac328bc781c7ac25dd19",
+  "cases": [
+    {
+      "path": "examples/aviso_legitimo_urgente.eml",
+      "expected_rules": [
+        "urgent_subject"
+      ],
+      "observed_rules": [
+        "urgent_subject"
+      ],
+      "sha256": "09198e7f1981d2902136e4b9159133932b09f2173d2348732d4285c65ab2c022"
+    },
+    {
+      "path": "examples/aviso_legitimo_sin_urgencia.eml",
+      "expected_rules": [],
+      "observed_rules": [],
+      "sha256": "0f3b4be19e8ee1e1c9e410f03ec3898d22256604f3e0e5bd9673e60195236ff6"
+    }
+  ],
+  "checks": {
+    "only_subject_prefix_changed": true,
+    "urgent_has_one_expected_finding": true,
+    "control_has_zero_findings": true,
+    "stored_request_matches_current_bundle": true,
+    "saved_response_has_expected_reference": true
+  },
+  "all_checks_passed": true,
+  "scope": "Una comparación controlada. No mide tasa de falsos positivos, autenticidad ni precisión del modelo. El analizador emite señales, no un veredicto de phishing."
+}

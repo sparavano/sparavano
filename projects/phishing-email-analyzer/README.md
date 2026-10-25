@@ -114,6 +114,8 @@ Un hallazgo es una **señal para revisar**, no un veredicto. Por ejemplo, una em
 
 Cero hallazgos significa que estas reglas no encontraron señales. No significa que el correo sea seguro.
 
+El [caso de urgencia en un aviso benigno sintético](docs/CASO_URGENCIA_BENIGNA.md) compara dos correos idénticos salvo una palabra del asunto. Con «URGENTE» aparece un hallazgo; al sustituirla por «Aviso», aparecen cero. Documenta un falso positivo potencial si se interpretara la señal como un veredicto de phishing, con una explicación manual de IA y un control reproducible mediante `py -3 evals\urgency_context.py`.
+
 ## Límites de esta versión
 
 - No calcula un puntaje ni decide si un correo es phishing.
