@@ -36,4 +36,8 @@
                                            LinkedIn:  in/santiago-paravano
 ```
 
+## Proyectos
+
+- [Analizador de correos de phishing](projects/phishing-email-analyzer/README.md): laboratorio educativo en Python, con análisis local, ejemplos ficticios, documentación y 18 pruebas automatizadas. Primera versión preparada con asistencia de IA.
+
 *Reflexión personal, académica y de divulgación. No representa la posición de ningún organismo o institución en la que me desempeñe o haya desempeñado funciones (Ley 25.188).*

@@ -1,0 +1,25 @@
+From: Soporte del laboratorio <soporte@universidad.example>
+To: Estudiante de prueba <estudiante@example.test>
+Reply-To: revision@cuenta.test
+Subject: URGENTE: revision de cuenta suspendida
+Date: Sat, 24 Oct 2026 10:05:00 -0300
+Message-ID: <ejemplo-sospechoso@cuenta.test>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="LABORATORIO-FICTICIO"
+
+--LABORATORIO-FICTICIO
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html><body>
+<p>Este mensaje es ficticio y contiene senales preparadas para el laboratorio.</p>
+<p><a href="http://revision.cuenta.test/confirmar">https://universidad.example</a></p>
+<p>Otro enlace de prueba: http://192.0.2.20/revision</p>
+</body></html>
+--LABORATORIO-FICTICIO
+Content-Type: application/octet-stream; name="comprobante.pdf.exe"
+Content-Disposition: attachment; filename="comprobante.pdf.exe"
+Content-Transfer-Encoding: base64
+
+RVNUTyBOTyBFUyBVTiBFSkVDVVRBQkxFLiBFUyBURVhUTyBERSBQUlVFQkEu
+--LABORATORIO-FICTICIO--

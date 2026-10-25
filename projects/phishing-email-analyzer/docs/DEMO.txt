@@ -1,0 +1,42 @@
+Analizador de phishing v0.1.0
+Archivo: normal.eml
+SHA-256: 656edeca2ac2b1065ccb2b3d69fbdba8f70e732482049e2441cdc093a6c62eac
+From: Biblioteca del laboratorio <biblioteca@universidad[.]example>
+Reply-To: consultas@universidad[.]example
+Asunto: Material de lectura de la semana
+
+Señales encontradas: 0
+- No se encontraron señales con las reglas de esta versión.
+
+Enlaces HTTP(S): 1
+- hxxps://universidad[.]example/biblioteca
+
+Adjuntos (sólo metadatos): 0
+
+Las señales requieren revisión humana. Cero señales no demuestra legitimidad. No se verifica SPF, DKIM ni DMARC.
+
+
+Analizador de phishing v0.1.0
+Archivo: sospechoso.eml
+SHA-256: d3d03c24d419b7ab595a8db43977768452384674c615be3a5734785279591bff
+From: Soporte del laboratorio <soporte@universidad[.]example>
+Reply-To: revision@cuenta[.]test
+Asunto: URGENTE: revision de cuenta suspendida
+
+Señales encontradas: 7
+- [reply_to_domain] From y Reply-To tienen dominios distintos: From: universidad[.]example; Reply-To: cuenta[.]test
+- [urgent_subject] El asunto contiene lenguaje de urgencia: suspendida, urgente
+- [link_label_mismatch] El enlace muestra un dominio y apunta a otro: Texto: hxxps://universidad[.]example; destino: hxxp://revision[.]cuenta[.]test/confirmar
+- [executable_attachment] Adjunto con extensión de ejecución: comprobante[.]pdf[.]exe
+- [http_link] Enlace HTTP sin cifrado de transporte: hxxp://192[.]0[.]2[.]20/revision
+- [ip_link] El enlace usa una dirección IP como destino: hxxp://192[.]0[.]2[.]20/revision
+- [http_link] Enlace HTTP sin cifrado de transporte: hxxp://revision[.]cuenta[.]test/confirmar
+
+Enlaces HTTP(S): 2
+- hxxp://192[.]0[.]2[.]20/revision
+- hxxp://revision[.]cuenta[.]test/confirmar
+
+Adjuntos (sólo metadatos): 1
+- comprobante[.]pdf[.]exe (application/octet-stream)
+
+Las señales requieren revisión humana. Cero señales no demuestra legitimidad. No se verifica SPF, DKIM ni DMARC.

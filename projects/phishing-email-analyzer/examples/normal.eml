@@ -1,0 +1,13 @@
+From: Biblioteca del laboratorio <biblioteca@universidad.example>
+To: Estudiante de prueba <estudiante@example.test>
+Reply-To: consultas@universidad.example
+Subject: Material de lectura de la semana
+Date: Sat, 24 Oct 2026 10:00:00 -0300
+Message-ID: <ejemplo-normal@universidad.example>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Este es un correo completamente ficticio para practicar.
+El material esta disponible en https://universidad.example/biblioteca
+No contiene datos personales ni enlaces a servicios reales.

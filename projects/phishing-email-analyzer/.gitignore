@@ -1,0 +1,11 @@
+# Correo real y reportes locales: no subir al repositorio.
+*.eml
+!examples/*.eml
+reports/
+private/
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.DS_Store
+Thumbs.db
