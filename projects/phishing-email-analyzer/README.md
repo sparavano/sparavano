@@ -60,6 +60,8 @@ py -3 phishing_analyzer.py examples\sospechoso.eml --ai-response examples\ai_res
 
 Este comando **importa una respuesta existente**; no genera una nueva respuesta ni consulta una API. La demo fue preparada por el asistente durante el desarrollo. Su [procedencia](docs/PROVENIENCIA_IA.md) se documenta por separado.
 
+También está documentada una [prueba de intercambio manual con una respuesta nueva](docs/PRUEBA_MANUAL_IA.md), realizada con otro correo ficticio y un contexto de generación separado. Incluye solicitud, respuesta, salida de la CLI y un control negativo de referencia. Sigue siendo una sola muestra, no un benchmark.
+
 Para trabajar manualmente con la herramienta de IA que elijas:
 
 ```powershell

@@ -1,0 +1,15 @@
+{
+  "request_id": "07c35f92e4668c097d343a0ebe09885695b66fec35e9c8afb68959cdabbf0ffb",
+  "review_required": true,
+  "explanations": [
+    {
+      "finding_id": "F001",
+      "rule": "userinfo_link",
+      "explanation": "El texto anterior al signo @ corresponde a información de usuario. Para identificar el destino del enlace, hay que distinguir ese texto del host real, situado después del separador.",
+      "manual_checks": [
+        "Identificá el signo @ que separa la información de usuario del host.",
+        "Revisá el host situado después del separador y distinguílo del texto anterior."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+Analizador de phishing v0.2.0
+Archivo: revision_enlace.eml
+SHA-256: bc36eb65826e2a1c9424983202bd415b107a9dda4ca310dd9e6615feda48ca55
+From: Biblioteca de practica <biblioteca@universidad[.]example>
+Reply-To: (ausente)
+Asunto: Material del laboratorio
+
+Señales encontradas: 1
+- [F001 / userinfo_link] El enlace contiene información de usuario antes de @: hxxps://universidad[.]example@material[.]test/lectura
+
+Enlaces HTTP(S): 1
+- hxxps://universidad[.]example@material[.]test/lectura
+
+Adjuntos (sólo metadatos): 0
+
+Las señales requieren revisión humana. Cero señales no demuestra legitimidad. No se verifica SPF, DKIM ni DMARC.
+
+Explicación asistida por IA
+Modo: respuesta guardada; sin nueva inferencia
+Formato, cobertura y referencias comprobados localmente. La veracidad semántica del texto generado no está verificada. Requiere revisión humana.
+
+[F001 / userinfo_link] El texto anterior al signo @ corresponde a información de usuario. Para identificar el destino del enlace, hay que distinguir ese texto del host real, situado después del separador.
+  Comprobar: Identificá el signo @ que separa la información de usuario del host.
+  Comprobar: Revisá el host situado después del separador y distinguílo del texto anterior.
